@@ -3,7 +3,7 @@
 **Undergraduate Researcher · Honors Program in Computer Science**  
 College of Computer Science, Beijing University of Technology, Beijing, China
 
-[Email](mailto:caojiatian05@163.com) · [Google Scholar](https://scholar.google.com/citations?user=D09BinAAAAAJ&hl=en) · [Curriculum Vitae](assets/CV_Jiatian_Cao.pdf)
+[Academic Homepage](https://kamisama-e.github.io/) · [Email](mailto:caojiatian05@163.com) · [Google Scholar](https://scholar.google.com/citations?user=D09BinAAAAAJ&hl=en) · [Curriculum Vitae](https://kamisama-e.github.io/assets/CV_Jiatian_Cao.pdf)
 
 ---
 
