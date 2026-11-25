@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>前四学期课程成绩单 | 曹家天 (Jiatian Cao)</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --surface: #ffffff;
+      --subtle: #f4f1ed;
+      --ink: #1e1b1c;
+      --secondary: #4a4345;
+      --muted: #766d70;
+      --accent: #822433;
+      --accent-tint: rgba(130, 36, 51, 0.07);
+      --accent-border: rgba(130, 36, 51, 0.26);
+      --gold: #8a642d;
+      --border: #e6e1dc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, #5c252f 60%, var(--gold) 100%);
+    }
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+    }
+    .header-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(30, 27, 28, 0.04);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      margin: 0 0 4px 0;
+      font-family: "Noto Serif SC", Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--secondary);
+      font-size: 0.92rem;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      font-size: 0.83rem;
+      font-weight: 500;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--secondary);
+      background: var(--surface);
+      transition: all 0.16s ease;
+    }
+    .btn:hover {
+      border-color: var(--accent-border);
+      color: var(--accent);
+      background: var(--accent-tint);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover {
+      background: #641a26;
+      color: #ffffff;
+    }
+    .meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-top: 14px;
+      font-size: 0.88rem;
+      color: var(--secondary);
+    }
+    .meta-strip strong { color: var(--ink); }
+    .highlight { color: var(--accent) !important; font-weight: 600; }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .filter-btn {
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--secondary);
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      color: var(--accent);
+      border-color: var(--accent-border);
+      background: var(--accent-tint);
+      font-weight: 600;
+    }
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow-x: auto;
+      box-shadow: 0 1px 2px rgba(30, 27, 28, 0.04);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th {
+      background: var(--subtle);
+      color: var(--secondary);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--secondary);
+      font-size: 0.86rem;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(130, 36, 51, 0.025); }
+    .course-name { color: var(--ink); font-weight: 500; }
+    .mono { font-family: "JetBrains Mono", monospace; font-size: 0.81rem; }
+    .muted { color: var(--muted); }
+    .num { text-align: right; }
+    th.num { text-align: right; }
+    .score-cell { font-weight: 600; color: var(--ink); }
+    .score-top { color: var(--accent); }
+    .score-high { color: var(--gold); }
+    tr[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="container">
+    <div class="header-card">
+      <div class="header-top">
+        <div>
+          <h1>前四学期课程成绩单（2024–2026 学年）</h1>
+          <p class="subtitle">北京工业大学 · 计算机学院 · 计算机科学与技术（实验班）</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="assets/transcript_semesters_1_4.xlsx" download="曹家天_前四学期课程成绩单.xlsx">下载原始 Excel 成绩单 (.xlsx)</a>
+          <a class="btn" href="https://github.com/Kamisama-e/Kamisama-e.github.io/blob/main/assets/transcript_semesters_1_4.xlsx" target="_blank" rel="noopener">GitHub 仓库源文件</a>
+          <a class="btn" href="index.html">返回个人主页</a>
+        </div>
+      </div>
+      <div class="meta-strip">
+        <span>姓名：<strong>曹家天</strong></span>
+        <span>学号：<strong class="mono">24071012</strong></span>
+        <span>加权平均分：<strong class="highlight mono">95.64 / 100</strong></span>
+        <span>专业排名：<strong class="highlight mono">1 / 68</strong></span>
+        <span>修读门数：<strong class="mono">55 门</strong></span>
+      </div>
+    </div>
+
+    <div class="filter-bar" role="group" aria-label="学期筛选">
+      <button type="button" class="filter-btn active" data-sem-filter="all">全部学期 (55)</button>
+      <button type="button" class="filter-btn" data-sem-filter="2024-2025-1">2024-2025 第1学期</button>
+      <button type="button" class="filter-btn" data-sem-filter="2024-2025-2">2024-2025 第2学期</button>
+      <button type="button" class="filter-btn" data-sem-filter="2025-2026-1">2025-2026 第1学期</button>
+      <button type="button" class="filter-btn" data-sem-filter="2025-2026-2">2025-2026 第2学期</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>学年学期</th>
+            <th>课程代码</th>
+            <th>课程名称</th>
+            <th>课程性质</th>
+            <th class="num">学分</th>
+            <th class="num">成绩</th>
+            <th class="num">绩点</th>
+            <th>开课学院</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">1</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0001908</td>
+              <td class="course-name">线性代数(工)</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>数学统计学与力学学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">2</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0002784</td>
+              <td class="course-name">军事理论</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>学工部、学生处、人武部、学生数据中心、学发中心</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">3</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0007947</td>
+              <td class="course-name">高级语言程序设计</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">3.5</td>
+              <td class="mono num score-cell score-top">99</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">4</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0004312</td>
+              <td class="course-name">中国近现代史纲要</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">5</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0009383</td>
+              <td class="course-name">形势与政策1</td>
+              <td>校选修课</td>
+              <td class="mono num">0.25</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">6</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">ty01116</td>
+              <td class="course-name">羽毛球</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>体育部</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">7</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0001903</td>
+              <td class="course-name">高等数学(工)-1</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">5.5</td>
+              <td class="mono num score-cell ">93</td>
+              <td class="mono num">4.00</td>
+              <td>数学统计学与力学学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">8</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0007929</td>
+              <td class="course-name">大学英语（综合）</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">4.0</td>
+              <td class="mono num score-cell ">93</td>
+              <td class="mono num">4.00</td>
+              <td>外国语学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">9</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0003087</td>
+              <td class="course-name">军事训练</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">89</td>
+              <td class="mono num">4.00</td>
+              <td>学工部、学生处、人武部、学生数据中心、学发中心</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">10</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0010923</td>
+              <td class="course-name">人工智能导论A</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">89</td>
+              <td class="mono num">4.00</td>
+              <td>信息科学技术学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">11</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0006794</td>
+              <td class="course-name">大学生心理适应指导</td>
+              <td>校选修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell ">87</td>
+              <td class="mono num">4.00</td>
+              <td>学生发展指导中心</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">12</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0009394</td>
+              <td class="course-name">新生研讨课</td>
+              <td>自主课程</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell ">通过</td>
+              <td class="mono num">2.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2024-2025-1">
+              <td class="mono muted">13</td>
+              <td class="mono">2024-2025 第1学期</td>
+              <td class="mono muted">0010931</td>
+              <td class="course-name">国家安全教育</td>
+              <td>自主课程</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell ">通过</td>
+              <td class="mono num">2.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">14</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0001904</td>
+              <td class="course-name">高等数学(工)-2</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">5.5</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>数学统计学与力学学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">15</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0007365</td>
+              <td class="course-name">高级语言程序设计课设</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.5</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">16</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0008187</td>
+              <td class="course-name">面向对象程序设计</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.5</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">17</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">ty01216</td>
+              <td class="course-name">羽毛球</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>体育部</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">18</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0004964</td>
+              <td class="course-name">物理实验（工）-1</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-high">96</td>
+              <td class="mono num">4.00</td>
+              <td>物理与光电工程学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">19</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0009630</td>
+              <td class="course-name">电路分析基础-1</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-high">96</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">20</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0000072</td>
+              <td class="course-name">大学物理Ⅰ-1</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.5</td>
+              <td class="mono num score-cell ">94</td>
+              <td class="mono num">4.00</td>
+              <td>物理与光电工程学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">21</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0009467</td>
+              <td class="course-name">习近平新时代中国特色社会主义思想概论</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell ">93</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">22</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0007907</td>
+              <td class="course-name">大学英语（高级）</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">4.0</td>
+              <td class="mono num score-cell ">92</td>
+              <td class="mono num">4.00</td>
+              <td>外国语学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">23</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0009438</td>
+              <td class="course-name">思想道德与法治</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell ">92</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2024-2025-2">
+              <td class="mono muted">24</td>
+              <td class="mono">2024-2025 第2学期</td>
+              <td class="mono muted">0009384</td>
+              <td class="course-name">形势与政策2</td>
+              <td>校选修课</td>
+              <td class="mono num">0.25</td>
+              <td class="mono num score-cell ">91</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">25</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0000073</td>
+              <td class="course-name">大学物理Ⅰ-2</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.5</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>物理与光电工程学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">26</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0003333</td>
+              <td class="course-name">概率论与数理统计（工）</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>数学统计学与力学学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">27</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">ty01316</td>
+              <td class="course-name">羽毛球</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>体育部</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">28</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0004746</td>
+              <td class="course-name">机械工程训练A</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">99</td>
+              <td class="mono num">4.00</td>
+              <td>机械与能源工程学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">29</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0006647</td>
+              <td class="course-name">职业生涯规划课</td>
+              <td>校选修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">99</td>
+              <td class="mono num">4.00</td>
+              <td>就业创业指导中心、创新创业学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">30</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0010053</td>
+              <td class="course-name">C++语言程序设计</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-top">99</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">31</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0008847</td>
+              <td class="course-name">中共党史</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">32</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0009385</td>
+              <td class="course-name">形势与政策3</td>
+              <td>校选修课</td>
+              <td class="mono num">0.25</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">33</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0010734</td>
+              <td class="course-name">模拟电子技术</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">34</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0007370</td>
+              <td class="course-name">集合与图论</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">2.5</td>
+              <td class="mono num score-cell score-high">97</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">35</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0004965</td>
+              <td class="course-name">物理实验（工）-2</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>物理与光电工程学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">36</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0005686</td>
+              <td class="course-name">数字逻辑Ⅰ</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">37</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0006457</td>
+              <td class="course-name">毛泽东思想和中国特色社会主义理论体系概论</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">38</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0008544</td>
+              <td class="course-name">高级英语综合-2</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>外国语学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">39</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0007131</td>
+              <td class="course-name">国际经济学</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">93</td>
+              <td class="mono num">4.00</td>
+              <td>经济与管理学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">40</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0008185</td>
+              <td class="course-name">数字逻辑实验</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell ">88</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-1">
+              <td class="mono muted">41</td>
+              <td class="mono">2025-2026 第1学期</td>
+              <td class="mono muted">0007384</td>
+              <td class="course-name">认识实习</td>
+              <td>自主课程</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell ">通过</td>
+              <td class="mono num">2.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">42</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0010654</td>
+              <td class="course-name">数据通信原理（双语）</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-top">100</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">43</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0007375</td>
+              <td class="course-name">计算机组成原理课设</td>
+              <td>实践环节必修课</td>
+              <td class="mono num">1.5</td>
+              <td class="mono num score-cell score-top">99</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">44</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0005683</td>
+              <td class="course-name">模式识别</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">45</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">ty01416</td>
+              <td class="course-name">羽毛球</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-top">98</td>
+              <td class="mono num">4.00</td>
+              <td>体育部</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">46</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0007739</td>
+              <td class="course-name">计算机组成原理</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell score-high">97</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">47</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0006911</td>
+              <td class="course-name">中国茶文化</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell score-high">96</td>
+              <td class="mono num">4.00</td>
+              <td>艺术设计学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">48</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0008186</td>
+              <td class="course-name">数据结构与算法</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">3.5</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">49</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0008720</td>
+              <td class="course-name">工程伦理</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">1.0</td>
+              <td class="mono num score-cell score-high">95</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">50</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0008300</td>
+              <td class="course-name">计算机图形学</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">94</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">51</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0004361</td>
+              <td class="course-name">马克思主义基本原理</td>
+              <td>公共基础必修课</td>
+              <td class="mono num">3.0</td>
+              <td class="mono num score-cell ">92</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">52</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0008191</td>
+              <td class="course-name">代数与逻辑</td>
+              <td>学科基础必修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">92</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">53</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0009378</td>
+              <td class="course-name">大国之都——北京的城市历史与文化</td>
+              <td>通识教育选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">92</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">54</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0008163</td>
+              <td class="course-name">汇编语言程序设计</td>
+              <td>专业选修课</td>
+              <td class="mono num">2.0</td>
+              <td class="mono num score-cell ">91</td>
+              <td class="mono num">4.00</td>
+              <td>计算机学院</td>
+            </tr>
+            <tr data-sem="2025-2026-2">
+              <td class="mono muted">55</td>
+              <td class="mono">2025-2026 第2学期</td>
+              <td class="mono muted">0009386</td>
+              <td class="course-name">形势与政策4</td>
+              <td>校选修课</td>
+              <td class="mono num">0.25</td>
+              <td class="mono num score-cell ">91</td>
+              <td class="mono num">4.00</td>
+              <td>马克思主义学院</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll("[data-sem-filter]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var f = btn.getAttribute("data-sem-filter");
+        document.querySelectorAll("[data-sem-filter]").forEach(function (b) {
+          b.classList.toggle("active", b === btn);
+        });
+        document.querySelectorAll("tbody tr").forEach(function (tr) {
+          tr.hidden = f !== "all" && tr.getAttribute("data-sem") !== f;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
