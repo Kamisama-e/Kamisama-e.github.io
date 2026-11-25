@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiatian Cao | Academic Homepage</title>
+  <meta name="description" content="Academic homepage of Jiatian Cao, undergraduate researcher in Computer Science at Beijing University of Technology working on Causal Discovery and Multimodal LLM Safety." />
+  <meta name="author" content="Jiatian Cao" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Jiatian Cao — Causal Discovery &amp; Multimodal LLM Safety" />
+  <meta property="og:description" content="Undergraduate Researcher at Beijing University of Technology (Honors Class, Rank 1/68). Research on Causal Structure Learning and MLLM Safety Unlearning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/portrait.png" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+
+  <!-- Prevent flash on saved dark theme -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("jc-theme");
+        if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+      } catch (_) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="top-accent-bar" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="#about" class="site-brand">Jiatian Cao</a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#about" class="active">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#grants">Grants</a>
+        <a href="#education">Education</a>
+        <a href="#honors">Honors</a>
+        <a href="assets/CV_Jiatian_Cao.pdf" class="nav-cv-link" target="_blank" rel="noopener">CV</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme" title="Switch color theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero / Biography -->
+    <section id="about" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1 class="hero-name">Jiatian Cao</h1>
+          <p class="hero-role">Undergraduate Researcher · Honors Program in Computer Science</p>
+          <p class="hero-affiliation">College of Computer Science, Beijing University of Technology</p>
+
+          <div class="hero-bio">
+            <p>
+              I am an undergraduate student in the Experimental (Honors) Class of Computer Science and Technology at
+              <strong>Beijing University of Technology</strong> (2024–present), ranking <strong>1st out of 68</strong> students
+              with a weighted average score of <strong>95.64 / 100</strong>. I work closely with Prof. Jinduo Liu and serve as the
+              Principal Investigator of an Undergraduate Research Grant funded by the Beijing Natural Science Foundation.
+            </p>
+            <p>
+              My research centers on <strong>causal discovery and interventional analysis</strong>, and their principled application to
+              <strong>multimodal large language model (MLLM) safety</strong>. Specifically, I study how to search candidate causal graphs
+              and audit whether relational evidence persists across functional representations in observational data, as well as how to
+              leverage counterfactual contrasts, causal localization, and controlled paired-condition objectives to selectively suppress
+              unsafe multimodal behaviors while preserving benign capabilities.
+            </p>
+          </div>
+
+          <div class="metrics-strip" aria-label="Academic Highlights">
+            <div class="metric-item">
+              <span class="metric-value">95.64 / 100 · Rank 1 / 68</span>
+              <span class="metric-label">Weighted GPA · CS Honors Class</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">EMNLP Oral &amp; KDD</span>
+              <span class="metric-label">First / Co-First Author Papers</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">BJNSF Grant PI</span>
+              <span class="metric-label">CNY 50,000 Research Funding</span>
+            </div>
+          </div>
+
+          <!-- Contact & Links (Update GitHub href once your <username>.github.io repo is created) -->
+          <div class="profile-links">
+            <button type="button" class="profile-btn profile-btn-primary" data-copy-email="caojiatian05@163.com" title="Click to copy email address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>caojiatian05@163.com</span>
+            </button>
+
+            <a class="profile-btn" href="https://scholar.google.com/citations?user=D09BinAAAAAJ&hl=en" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>Google Scholar</span>
+            </a>
+
+            <a class="profile-btn" href="https://github.com" target="_blank" rel="noopener" data-github-profile>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.38-3.87-1.38-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.26 5.67.42.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+
+            <a class="profile-btn" href="assets/CV_Jiatian_Cao.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>Curriculum Vitae</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="portrait-wrap">
+          <div class="portrait-frame">
+            <img src="assets/img/portrait.png" alt="Portrait of Jiatian Cao" class="portrait-img" width="174" height="174" />
+          </div>
+          <span class="portrait-caption">Beijing, China</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Overview -->
+    <section id="research">
+      <div class="section-header">
+        <h2 class="section-title">Research Agenda</h2>
+        <span class="section-note">From Observational Structure Discovery to Interventional Model Safety</span>
+      </div>
+      <p class="section-lead">
+        My research connects structure learning in observational data with controlled behavioral analysis in neural foundation models,
+        forming two complementary lines of inquiry:
+      </p>
+
+      <div class="thrust-grid">
+        <article class="thrust-card">
+          <span class="thrust-kicker">Thrust I · Causal Structure Learning</span>
+          <h3 class="thrust-heading">Evidence Auditing &amp; Graph Policy Search</h3>
+          <p class="thrust-desc">
+            Examines when observational support for a candidate causal relation survives representation shifts and how to search
+            combinatorial graph spaces under finite sampling. <strong>MechAtlas</strong> audits exact-lag time-series candidates across
+            native and residualized response representations, while <strong>RECAP</strong> couples group-relative evaluation with
+            annealed cross-update edge consensus.
+          </p>
+          <div class="thrust-tags">
+            <span class="thrust-tag">Time-Series Causal Discovery</span>
+            <span class="thrust-tag">Exact-Lag Identification</span>
+            <span class="thrust-tag">RL Graph Search</span>
+          </div>
+        </article>
+
+        <article class="thrust-card">
+          <span class="thrust-kicker">Thrust II · Causal Perspective on MLLM Safety</span>
+          <h3 class="thrust-heading">Counterfactual Editing &amp; Conditional Refusal</h3>
+          <p class="thrust-desc">
+            Brings counterfactual experimental controls and internal interventions into selective safety unlearning for multimodal LLMs.
+            <strong>CMIE</strong> isolates and nullifies post-fusion harmful image–text interaction subspaces via minimum-distortion
+            weight edits, while <strong>ICRU</strong> directly optimizes paired-image refusal separation under fixed textual prompts.
+          </p>
+          <div class="thrust-tags">
+            <span class="thrust-tag">Multimodal Safety Unlearning</span>
+            <span class="thrust-tag">Mechanistic Localization</span>
+            <span class="thrust-tag">Conditional Refusal</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Selected Publications -->
+    <section id="publications">
+      <div class="section-header">
+        <h2 class="section-title">Selected Publications</h2>
+        <span class="section-note">* Equal contribution · † Corresponding author</span>
+      </div>
+
+      <div class="pub-controls">
+        <div class="filter-group" role="group" aria-label="Filter publications">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All (4)</button>
+          <button type="button" class="filter-btn" data-filter="accepted" aria-pressed="false">Accepted (2)</button>
+          <button type="button" class="filter-btn" data-filter="causal" aria-pressed="false">Causal Structure Learning (2)</button>
+          <button type="button" class="filter-btn" data-filter="safety" aria-pressed="false">Multimodal LLM Safety (2)</button>
+        </div>
+      </div>
+
+      <div class="pub-list">
+        <!-- 1. CMIE (EMNLP 2026 Main Oral) -->
+        <article class="pub-item" data-tags="accepted safety">
+          <div class="pub-meta-top">
+            <span class="venue-badge">EMNLP 2026 Main</span>
+            <span class="oral-badge">Oral Presentation</span>
+            <span class="pub-role">Co-First Author (Listed First)</span>
+            <span class="pub-domain-label">Multimodal LLM Safety</span>
+          </div>
+          <h3 class="pub-title">
+            CMIE: Cross-Modal Interaction Erasure via Counterfactual Localization and Subspace Nullification for MLLM Safety Unlearning
+          </h3>
+          <p class="pub-authors">
+            <span class="author-self">Jiatian Cao*</span>, Linyi Cai*, Mengqi Wang*, Jinduo Liu†, Junzhong Ji, Yongping Du, Honggui Han
+          </p>
+          <p class="pub-summary">
+            Formulates multimodal safety unlearning at the level of post-fusion image–text interactions via 2&nbsp;&times;&nbsp;2 intent-matched
+            counterfactual contrasts, activation-patched layer localization, and closed-form minimum-distortion subspace nullification.
+            Achieves the <strong>best overall mean rank (1.7 vs. 2.9 runner-up)</strong> across SafeEraser, VLGuard, and MSSBench,
+            reducing SafeEraser ASR to <strong>0.42% / 0.13%</strong> on LLaVA-1.5-7B and Qwen2.5-VL-3B while retaining <strong>0.993</strong> safe-view cosine similarity.
+          </p>
+          <div class="pub-actions">
+            <a class="pub-btn pub-btn-ext" href="https://openreview.net/forum?id=XCTF9L7vlE" target="_blank" rel="noopener">OpenReview ↗</a>
+            <button type="button" class="pub-btn" data-drawer-target="cmie-highlights" aria-expanded="false">Overview &amp; Results</button>
+            <button type="button" class="pub-btn" data-drawer-target="cmie-abstract" aria-expanded="false">Abstract</button>
+            <button type="button" class="pub-btn" data-drawer-target="cmie-bib" aria-expanded="false">BibTeX</button>
+          </div>
+
+          <div id="cmie-highlights" class="pub-drawer" hidden>
+            <ul class="highlights-list">
+              <li><strong>Motivation:</strong> Multimodal hazards arise when risky visual evidence fuses with unsafe textual intent; erasing broad visual concepts harms object recognition, whereas surface refusal tuning triggers widespread over-refusal on benign queries.</li>
+              <li><strong>Method:</strong> Constructs 2&nbsp;&times;&nbsp;2 intent-matched counterfactual cubes to cancel unimodal main effects via difference-in-differences; validates behaviorally active post-fusion layers through causal activation patching; fits a safe-covariance-whitened low-rank harmful subspace; and applies a closed-form minimum-distortion weight edit followed by projection-constrained LoRA recovery.</li>
+              <li><strong>Empirical Findings:</strong> Ranks 1st across six evaluation blocks on LLaVA-1.5-7B and Qwen2.5-VL-3B; lowers SafeEraser ASR from 4.79% / 3.51% (PO+PD) to 0.42% / 0.13%, reduces target-subspace weight readout sensitivity to 0.024% of pre-edit levels, and preserves benign capability without reopening erased directions.</li>
+            </ul>
+          </div>
+
+          <div id="cmie-abstract" class="pub-drawer" hidden>
+            <p>
+              Safety unlearning for multimodal large language models (MLLMs) fails when it treats danger as an object, topic, or prompt template.
+              A useful MLLM must still recognize risky visual evidence and answer benign educational or preventive questions about the same content.
+              The safety-critical target is narrower: the post-fusion interaction that converts risky visual evidence and unsafe textual intent into
+              actionable harmful assistance. Existing refusal-oriented and unlearning objectives reach this mechanism only indirectly, widening refusal
+              boundaries or leaving recoverable multimodal harmful pathways. We propose CMIE, Cross-Modal Interaction Erasure, a mechanism-level method
+              that directly treats the harmful image-text interaction as the object of erasure. CMIE first estimates harmful interaction directions with
+              intent-matched counterfactual contrasts that cancel unimodal main effects. It then localizes behaviorally active post-fusion layers and
+              estimates a safe-whitened low-rank harmful subspace. A closed-form minimum-distortion weight edit erases this subspace, and
+              projection-constrained recovery restores benign utility without rewriting erased directions. Across SafeEraser, VLGuard, and MSSBench,
+              CMIE achieves the best overall mean rank and outperforms strong baselines on multiple safety, utility, visual selectivity, and paired-context metrics.
+            </p>
+          </div>
+
+          <div id="cmie-bib" class="pub-drawer" hidden>
+            <div class="bibtex-header">
+              <span class="bibtex-label">BibTeX Citation</span>
+              <button type="button" class="copy-bib-btn" data-copy-bib="cmie-bib-code">Copy</button>
+            </div>
+            <pre id="cmie-bib-code" class="bibtex-pre">@inproceedings{cao2026cmie,
+  title     = {CMIE: Cross-Modal Interaction Erasure via Counterfactual Localization and Subspace Nullification for MLLM Safety Unlearning},
+  author    = {Cao, Jiatian and Cai, Linyi and Wang, Mengqi and Liu, Jinduo and Ji, Junzhong and Du, Yongping and Han, Honggui},
+  booktitle = {Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages     = {50518--50541},
+  year      = {2026},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://openreview.net/forum?id=XCTF9L7vlE},
+  note      = {Oral Presentation}
+}</pre>
+          </div>
+        </article>
+
+        <!-- 2. MechAtlas (KDD 2027 Research Track Accepted) -->
+        <article class="pub-item" data-tags="accepted causal">
+          <div class="pub-meta-top">
+            <span class="venue-badge">KDD 2027 Research Track</span>
+            <span class="oral-badge">Accepted (Cycle 1)</span>
+            <span class="pub-role">First Author</span>
+            <span class="pub-domain-label">Causal Structure Learning</span>
+          </div>
+          <h3 class="pub-title">
+            MechAtlas: Mechanism-Persistent Evidence for Lag-Specific Time-Series Causal Discovery
+          </h3>
+          <p class="pub-authors">
+            <span class="author-self">Jiatian Cao</span>, Mengqi Wang, Linyi Cai, Jinduo Liu†
+          </p>
+          <p class="pub-summary">
+            Introduces a controlled, graph-blind cross-representation auditing criterion for exact-lag time-series causal discovery,
+            testing whether conditional support persists across native and ridge-residualized orthonormal response views.
+            Achieves the <strong>highest strict exact-lag AUROC on 14 of 17 public benchmarks</strong> (Top-3 on all 17) and improves matched
+            15-dataset macro AUROC from <strong>0.6920</strong> to <strong>0.8869</strong>.
+          </p>
+          <div class="pub-actions">
+            <a class="pub-btn pub-btn-ext" href="https://openreview.net/forum?id=obyxbnl8sS" target="_blank" rel="noopener">OpenReview ↗</a>
+            <button type="button" class="pub-btn" data-drawer-target="mechatlas-highlights" aria-expanded="false">Overview &amp; Results</button>
+            <button type="button" class="pub-btn" data-drawer-target="mechatlas-abstract" aria-expanded="false">Abstract</button>
+            <button type="button" class="pub-btn" data-drawer-target="mechatlas-bib" aria-expanded="false">BibTeX</button>
+          </div>
+
+          <div id="mechatlas-highlights" class="pub-drawer" hidden>
+            <ul class="highlights-list">
+              <li><strong>Motivation:</strong> Under autocorrelation and nonlinear mechanism ambiguity, an exact-lag candidate edge can appear supported in one functional representation yet lose conditional support in another, while unconstrained pretrained encoders risk leaking variable-name or dataset priors.</li>
+              <li><strong>Method:</strong> Compiles a sealed 8-dimensional orthonormal response basis on graph-free synthetic series prior to benchmark access; extracts ridge-residualized lagged source responses using training splits only; and re-evaluates native and augmented views under identical conditional screening and multiple testing, retaining only their intersection ordered by weaker normalized support.</li>
+              <li><strong>Empirical Findings:</strong> Across 17 public datasets spanning simulated fMRI, power grids, and climate systems against 9 comparators, ranks 1st on 14 datasets and Top-3 on all 17 in strict exact-lag AUROC; boosts 15-dataset paired ablation macro AUROC from 0.6920 (native-only) and 0.6918 (direct concatenation) to 0.8869.</li>
+            </ul>
+          </div>
+
+          <div id="mechatlas-abstract" class="pub-drawer" hidden>
+            <p>
+              Lag-specific time-series causal discovery must identify the source, target, and delay of each directed relation. Yet evidence for an
+              exact-lag candidate can be representation-fragile: under nonlinear mechanism ambiguity, a candidate may appear compelling in one functional
+              description even when its conditional support does not persist in another. A single-view score hides this dependence, while an unconstrained
+              auxiliary representation can inject graph information instead of testing evidence already present in the series. We introduce MechAtlas, which
+              asks whether the same exact-lag candidate survives a controlled, graph-blind functional stress. Before benchmark access, a sealed library of
+              executable response programs and a frozen pre-head temporal encoder define a shared orthonormal response atlas. For each candidate, the atlas
+              is evaluated on the aligned lagged source and ridge-residualized against the native representation. The frozen direct conditional witness then
+              evaluates the native and augmented views under the same decision protocol. MechAtlas returns their native-preserving intersection and assigns
+              each candidate its weaker normalized support, so the atlas may veto a native edge but can never propose, restore, redirect, or relabel one.
+              Across 17 public datasets with comparator availability varying by row, MechAtlas reports the highest available strict exact-lag AUC on 14 of 17
+              datasets and ranks within the top three on all 17; on the matched 15-dataset ablation, its equal-row macro AUC is 0.8869, compared with 0.8544
+              for a same-rank random atlas and 0.6920 for native-only evidence.
+            </p>
+          </div>
+
+          <div id="mechatlas-bib" class="pub-drawer" hidden>
+            <div class="bibtex-header">
+              <span class="bibtex-label">BibTeX Citation</span>
+              <button type="button" class="copy-bib-btn" data-copy-bib="mechatlas-bib-code">Copy</button>
+            </div>
+            <pre id="mechatlas-bib-code" class="bibtex-pre">@inproceedings{cao2027mechatlas,
+  title     = {MechAtlas: Mechanism-Persistent Evidence for Lag-Specific Time-Series Causal Discovery},
+  author    = {Cao, Jiatian and Wang, Mengqi and Cai, Linyi and Liu, Jinduo},
+  booktitle = {Proceedings of the 33rd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  year      = {2027},
+  url       = {https://openreview.net/forum?id=obyxbnl8sS}
+}</pre>
+          </div>
+        </article>
+
+        <!-- 3. ICRU (IEEE TPAMI Under Review) -->
+        <article class="pub-item" data-tags="safety">
+          <div class="pub-meta-top">
+            <span class="venue-badge venue-badge-review">IEEE TPAMI · Under Review</span>
+            <span class="pub-role">First Author</span>
+            <span class="pub-domain-label">Multimodal LLM Safety</span>
+          </div>
+          <h3 class="pub-title">
+            ICRU: Image-Conditional Refusal Unlearning for Multimodal LLM Safety
+          </h3>
+          <p class="pub-authors">
+            <span class="author-self">Jiatian Cao</span>, Yining Wang, Jinduo Liu†, Junzhong Ji, Yongping Du, Honggui Han
+          </p>
+          <p class="pub-summary">
+            Turns visual conditionality into a direct robust training objective by holding the prompt and refusal sequence fixed across
+            paired harmful and safe images, calibrated relative to the frozen initial model and optimized over worst-case prompt variants.
+            Reduces SafeEraser safe-image over-refusal by <strong>15.09 / 10.66 percentage points</strong> while lowering harmful-image ASR to
+            <strong>1.24% / 0.04%</strong> with zero inference overhead.
+          </p>
+          <div class="pub-actions">
+            <a class="pub-btn pub-btn-ext" href="https://anonymous.4open.science/r/ICRU-1BD1" target="_blank" rel="noopener">Code ↗</a>
+            <button type="button" class="pub-btn" data-drawer-target="icru-highlights" aria-expanded="false">Overview &amp; Results</button>
+            <button type="button" class="pub-btn" data-drawer-target="icru-abstract" aria-expanded="false">Abstract</button>
+            <button type="button" class="pub-btn" data-drawer-target="icru-bib" aria-expanded="false">BibTeX</button>
+          </div>
+
+          <div id="icru-highlights" class="pub-drawer" hidden>
+            <ul class="highlights-list">
+              <li><strong>Motivation:</strong> Supervising harmful-view refusal and benign-view QA independently varies image, target text, sequence length, and prefix simultaneously, failing to guarantee that refusal behavior genuinely depends on visual risk rather than prompt surface cues.</li>
+              <li><strong>Method:</strong> Fixes the prompt, refusal string, and token prefix while substituting paired harmful and benign images; measures relative gains over the frozen reference contrast; prioritizes the weakest-improving branch across four question rephrasings; and integrates gradient-norm calibration with zero extra inference modules or forward passes.</li>
+              <li><strong>Empirical Findings:</strong> Under matched data, LoRA configuration, and compute budget against PO+PD on LLaVA-1.5-7B and Qwen2.5-VL-3B, cuts SafeEraser benign-view over-refusal by 15.09 and 10.66 points with harmful-view ASR at 1.24% and 0.04%, attaining a 1.58 mean rank (Top-2 in every block) across SafeEraser, VLGuard, and VLSBench.</li>
+            </ul>
+          </div>
+
+          <div id="icru-abstract" class="pub-drawer" hidden>
+            <p>
+              A multimodal model should refuse when the joint image-prompt context is unsafe, rather than merely because the prompt contains
+              safety-sensitive cues. However, existing safety-unlearning methods usually supervise harmful-view refusal and safe-view answering as
+              independent token-level objectives. This indirect formulation can fit both targets without explicitly requiring refusal behavior to change
+              with visual evidence. We propose Calibrated Image-Conditional Refusal Unlearning (ICRU), a framework that turns visual conditionality from
+              an incidental outcome of independent supervision into a direct and robust learning objective. First, ICRU holds the prompt and refusal
+              sequence fixed and contrasts the likelihood of the same refusal under paired harmful and safe images, thereby directly measuring visual
+              sensitivity under a fixed prompt. Next, it measures how this contrast changes from the frozen initial model, focusing optimization on
+              training-induced conditionality while canceling equal additive image-independent shifts. Then, ICRU treats the four question variants of
+              each record as a small uncertainty set and optimizes the weakest branch, so an easy wording cannot hide brittle conditionality in another
+              branch. Finally, a train-only gradient-scale calibration integrates this robust contrast with the original harmful-refusal, safe-answer,
+              and retention losses, without adding an inference-time module or forward pass.
+            </p>
+          </div>
+
+          <div id="icru-bib" class="pub-drawer" hidden>
+            <div class="bibtex-header">
+              <span class="bibtex-label">BibTeX Citation</span>
+              <button type="button" class="copy-bib-btn" data-copy-bib="icru-bib-code">Copy</button>
+            </div>
+            <pre id="icru-bib-code" class="bibtex-pre">@article{cao2026icru,
+  title   = {ICRU: Image-Conditional Refusal Unlearning for Multimodal LLM Safety},
+  author  = {Cao, Jiatian and Wang, Yining and Liu, Jinduo and Ji, Junzhong and Du, Yongping and Han, Honggui},
+  journal = {Submitted to IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+  year    = {2026}
+}</pre>
+          </div>
+        </article>
+
+        <!-- 4. RECAP (ICLR 2027 Under Review) -->
+        <article class="pub-item" data-tags="causal">
+          <div class="pub-meta-top">
+            <span class="venue-badge venue-badge-review">ICLR 2027 · Under Review</span>
+            <span class="pub-role">Second Author</span>
+            <span class="pub-domain-label">Causal Structure Learning</span>
+          </div>
+          <h3 class="pub-title">
+            RECAP: Relative Evaluation with Consensus Augmented Policy Search for Causal Discovery
+          </h3>
+          <p class="pub-authors">
+            Yilin Lu, <span class="author-self">Jiatian Cao</span>, Junzhong Ji, Jinduo Liu†
+          </p>
+          <p class="pub-summary">
+            Stabilizes reinforcement-learning causal graph search under small sample batches by combining within-input group-relative
+            advantages with an annealed cross-update edge-consensus teacher. Achieves the <strong>lowest mean SHD and highest precision</strong>
+            across Asia, Cancer, NetSim, and Sachs against 15 baselines, reaching <strong>0.56 F1 on NetSim</strong> (vs. 0.49 strongest baseline).
+          </p>
+          <div class="pub-actions">
+            <a class="pub-btn pub-btn-ext" href="https://openreview.net/forum?id=kZs508l1Cn" target="_blank" rel="noopener">OpenReview ↗</a>
+            <button type="button" class="pub-btn" data-drawer-target="recap-highlights" aria-expanded="false">Overview &amp; Results</button>
+            <button type="button" class="pub-btn" data-drawer-target="recap-abstract" aria-expanded="false">Abstract</button>
+            <button type="button" class="pub-btn" data-drawer-target="recap-bib" aria-expanded="false">BibTeX</button>
+          </div>
+
+          <div id="recap-highlights" class="pub-drawer" hidden>
+            <ul class="highlights-list">
+              <li><strong>Motivation:</strong> Score-based RL policies evaluate only a small batch of candidate DAGs per step; raw BIC rewards shift across input blocks, while recurring high-scoring edges discovered in earlier rounds can be lost as the sampling policy updates.</li>
+              <li><strong>Method:</strong> Encodes directed variable pairs via gated attention; updates the graph policy using group-relative advantages within each input to cancel baseline shifts; distills recurring high-reward edges via an EMA consensus teacher with annealed weights; and constrains policy drift via reference KL regularization and entropy exploration.</li>
+              <li><strong>Empirical Findings:</strong> Across 10 repeated trials on Asia, Cancer, NetSim, and Sachs against 15 comparators, attains the lowest (or tied-lowest) mean SHD and highest (or tied-highest) edge precision on all four benchmarks; ablating group-relative evaluation drops NetSim F1 from 0.56 to 0.29, and ablating consensus drops Sachs F1 from 0.62 to 0.46.</li>
+            </ul>
+          </div>
+
+          <div id="recap-abstract" class="pub-drawer" hidden>
+            <p>
+              Reinforcement learning can search for causal graphs by scoring sampled structures, but learning a graph policy from limited candidate
+              graphs is often unstable. Rewards vary across inputs, while promising edges found in earlier updates may be lost as the policy changes.
+              We propose RECAP, Relative Evaluation with Consensus Augmented Policy Search, which couples within-input relative evaluation with
+              cross-update structural memory. RECAP uses group-relative advantages to distinguish candidate graphs for the same input and guide the
+              current policy update. To carry structural evidence across updates, it aggregates edges from high-reward graphs into an evolving consensus
+              teacher, whose selective, annealed guidance favors recurring edges without permanently constraining the search. A reference-policy KL term
+              moderates policy changes, while the graph policy samples candidates from contextual variable representations and scores them using a
+              BIC-based reward with an acyclicity penalty. Across four benchmarks spanning Bayesian networks, simulated fMRI, and protein signaling,
+              RECAP achieves the lowest SHD and highest precision, with the best or tied-best F1 on three.
+            </p>
+          </div>
+
+          <div id="recap-bib" class="pub-drawer" hidden>
+            <div class="bibtex-header">
+              <span class="bibtex-label">BibTeX Citation</span>
+              <button type="button" class="copy-bib-btn" data-copy-bib="recap-bib-code">Copy</button>
+            </div>
+            <pre id="recap-bib-code" class="bibtex-pre">@article{lu2026recap,
+  title   = {RECAP: Relative Evaluation with Consensus Augmented Policy Search for Causal Discovery},
+  author  = {Lu, Yilin and Cao, Jiatian and Ji, Junzhong and Liu, Jinduo},
+  journal = {Submitted to International Conference on Learning Representations (ICLR)},
+  year    = {2027},
+  url     = {https://openreview.net/forum?id=kZs508l1Cn}
+}</pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Research Grants -->
+    <section id="grants">
+      <div class="section-header">
+        <h2 class="section-title">Research Grants &amp; Funded Projects</h2>
+      </div>
+
+      <div class="entry-stack">
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3 class="entry-title">Safety Unlearning and Erasure of Endogenous Harmful Knowledge in Multimodal Large Language Models</h3>
+            <span class="entry-date">2026.05 – 2027.05</span>
+          </div>
+          <div class="entry-sub">
+            <span class="role-pill">Principal Investigator (PI)</span>
+            <span>Beijing Natural Science Foundation — Undergraduate &ldquo;QiYan&rdquo; Research Program (Grant No. QY26107) · CNY 50,000</span>
+          </div>
+          <p class="entry-desc">
+            Investigates counterfactual behavioral localization, minimum-distortion subspace weight nullification, and paired image-conditional
+            refusal learning to selectively suppress unsafe multimodal capabilities without degrading benign visual-linguistic reasoning.
+          </p>
+        </div>
+
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3 class="entry-title">Starfire Key Research Fund</h3>
+            <span class="entry-date">2024.12</span>
+          </div>
+          <div class="entry-sub">
+            <span class="role-pill">Key Project</span>
+            <span>Beijing University of Technology Undergraduate Research Program</span>
+          </div>
+          <p class="entry-desc">
+            Competitive university-funded key undergraduate research project supporting early-stage exploration in machine learning and structural modeling.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-header">
+        <h2 class="section-title">Education &amp; Academic Foundation</h2>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-head">
+          <h3 class="entry-title">Beijing University of Technology</h3>
+          <span class="entry-date">2024.09 – Present</span>
+        </div>
+        <div class="entry-sub">
+          <span>B.Eng. in Computer Science and Technology (Experimental / Honors Class), College of Computer Science</span>
+        </div>
+        <p class="entry-desc">
+          Weighted Average Score: <strong>95.64 / 100</strong> &nbsp;·&nbsp; Academic Rank: <strong>1 / 68</strong> (Top 1.5%)
+        </p>
+
+        <div class="edu-details">
+          <div>
+            <h4 class="edu-block-title">Selected Core Coursework (Out of 100)</h4>
+            <div class="course-grid">
+              <span class="course-chip">Linear Algebra <span class="course-score">100</span></span>
+              <span class="course-chip">Probability &amp; Mathematical Statistics <span class="course-score">100</span></span>
+              <span class="course-chip">Advanced Mathematics <span class="course-score">100, 93</span></span>
+              <span class="course-chip">Data Communications Principles <span class="course-score">100</span></span>
+              <span class="course-chip">High-Level Language Programming <span class="course-score">99, 100</span></span>
+              <span class="course-chip">College Physics <span class="course-score">100, 94</span></span>
+              <span class="course-chip">C++ Programming <span class="course-score">99</span></span>
+              <span class="course-chip">Computer Organization <span class="course-score">97, 99</span></span>
+              <span class="course-chip">Object-Oriented Programming <span class="course-score">98</span></span>
+              <span class="course-chip">Pattern Recognition <span class="course-score">98</span></span>
+              <span class="course-chip">Set Theory &amp; Graph Theory <span class="course-score">97</span></span>
+              <span class="course-chip">Data Structures &amp; Algorithms <span class="course-score">95</span></span>
+              <span class="course-chip">Digital Logic <span class="course-score">95</span></span>
+              <span class="course-chip">Computer Graphics <span class="course-score">94</span></span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="edu-block-title">Technical Stack &amp; Languages</h4>
+            <div class="skills-grid">
+              <div class="skill-col">
+                <span class="skill-col-label">Programming &amp; Deep Learning</span>
+                <span class="skill-col-text">Python, C++, PyTorch, Hugging Face Transformers</span>
+              </div>
+              <div class="skill-col">
+                <span class="skill-col-label">Systems &amp; Experimentation</span>
+                <span class="skill-col-text">Git, Docker, Weights &amp; Biases (WandB), TensorBoard</span>
+              </div>
+              <div class="skill-col">
+                <span class="skill-col-label">Language Proficiency</span>
+                <span class="skill-col-text">Mandarin (Native) · English (CET-6: 577 / 710; independent academic writing)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section id="honors">
+      <div class="section-header">
+        <h2 class="section-title">Selected Honors &amp; Awards</h2>
+      </div>
+
+      <div class="honors-list">
+        <div class="honor-row">
+          <span class="honor-date">2026.08</span>
+          <div class="honor-content">
+            <strong class="honor-highlight">National First Prize</strong> · China Robot and Artificial Intelligence Competition (CRAIC) — <em>Baidu Apollo Autonomous Driving Track</em>
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2026.05</span>
+          <div class="honor-content">
+            <strong class="honor-highlight">Undergraduate Research Grant (CNY 50,000, PI)</strong> · Beijing Natural Science Foundation (<em>&ldquo;QiYan&rdquo; Program</em>)
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2026.10</span>
+          <div class="honor-content">
+            <strong>Xiaomi Scholarship (CNY 5,000)</strong> · Beijing University of Technology
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2026.10</span>
+          <div class="honor-content">
+            <strong>Merit Student</strong> · Beijing University of Technology Annual Honors
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2025.10, 2026.10</span>
+          <div class="honor-content">
+            <strong>Academic Excellence Award (2×)</strong> · Beijing University of Technology Annual Honors
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2026.10</span>
+          <div class="honor-content">
+            <strong>Innovation and Entrepreneurship Award</strong> · Beijing University of Technology Annual Honors
+          </div>
+        </div>
+
+        <div class="honor-row">
+          <span class="honor-date">2024.12</span>
+          <div class="honor-content">
+            <strong>Key Project Grant</strong> · Starfire Research Fund, Beijing University of Technology
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© 2026 Jiatian Cao · College of Computer Science, Beijing University of Technology</div>
+      <div class="footer-contact">
+        <a href="mailto:caojiatian05@163.com" class="inline-link">caojiatian05@163.com</a>
+        <span>·</span>
+        <span>WeChat: cjtto_o</span>
+        <span>·</span>
+        <span>Updated November 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="copy-toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
